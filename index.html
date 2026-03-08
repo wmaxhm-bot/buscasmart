@@ -1,0 +1,220 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>BuscaSmart - Encuentra el mejor producto</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:linear-gradient(135deg,#141E30,#243B55);
+color:white;
+text-align:center;
+padding:40px;
+}
+
+.logo{
+font-size:42px;
+font-weight:600;
+margin-bottom:10px;
+}
+
+.subtitle{
+opacity:0.8;
+margin-bottom:40px;
+}
+
+.search-box{
+background:white;
+padding:30px;
+border-radius:15px;
+max-width:600px;
+margin:auto;
+color:#333;
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
+}
+
+input{
+width:100%;
+padding:12px;
+border-radius:8px;
+border:1px solid #ccc;
+margin-top:15px;
+}
+
+button{
+margin-top:15px;
+padding:12px 25px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-size:15px;
+background:linear-gradient(45deg,#ff512f,#dd2476);
+color:white;
+margin-right:10px;
+}
+
+.tools{
+margin-top:50px;
+background:white;
+color:#333;
+padding:30px;
+border-radius:15px;
+max-width:600px;
+margin-left:auto;
+margin-right:auto;
+}
+
+.donation{
+margin-top:40px;
+background:white;
+color:#333;
+padding:30px;
+border-radius:15px;
+max-width:600px;
+margin-left:auto;
+margin-right:auto;
+}
+
+.qr{
+width:220px;
+margin-top:15px;
+border-radius:10px;
+box-shadow:0 10px 20px rgba(0,0,0,0.2);
+}
+
+footer{
+margin-top:40px;
+opacity:0.7;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="logo">BuscaSmart</div>
+<div class="subtitle">Encuentra el mejor producto en internet</div>
+
+<div class="search-box">
+
+<h2>🔎 Buscar productos</h2>
+
+<input type="text" id="producto" placeholder="Ej: laptop gamer, iphone, audífonos">
+
+<br>
+
+<button onclick="buscarAmazon()">Amazon</button>
+<button onclick="buscarAli()">AliExpress</button>
+<button onclick="buscarGoogle()">Google</button>
+
+</div>
+
+<div class="tools">
+
+<h2>🧰 Convertidor JPG a PNG</h2>
+
+<input type="file" id="fileInput" accept="image/jpeg">
+
+<br>
+
+<button onclick="convert()">Convertir archivo</button>
+
+<canvas id="canvas" style="display:none;"></canvas>
+
+<a id="download"></a>
+
+</div>
+
+<div class="donation">
+
+<h2>💜 Apoya este proyecto</h2>
+
+<p>Si esta web te ayudó puedes apoyar con una donación</p>
+
+<img src="qr-yape.png" class="qr">
+
+<p>Escanea el QR con Yape</p>
+
+</div>
+
+<footer>
+
+<p>© 2026 BuscaSmart</p>
+
+</footer>
+
+<script>
+
+function buscarAmazon(){
+
+let producto=document.getElementById("producto").value;
+
+window.open("https://www.amazon.com/s?k="+producto);
+
+}
+
+function buscarAli(){
+
+let producto=document.getElementById("producto").value;
+
+window.open("https://www.aliexpress.com/wholesale?SearchText="+producto);
+
+}
+
+function buscarGoogle(){
+
+let producto=document.getElementById("producto").value;
+
+window.open("https://www.google.com/search?q=mejor+precio+"+producto);
+
+}
+
+function convert(){
+
+let file=document.getElementById("fileInput").files[0];
+
+if(!file) return;
+
+let img=new Image();
+img.src=URL.createObjectURL(file);
+
+img.onload=function(){
+
+let canvas=document.getElementById("canvas");
+let ctx=canvas.getContext("2d");
+
+canvas.width=img.width;
+canvas.height=img.height;
+
+ctx.drawImage(img,0,0);
+
+let png=canvas.toDataURL("image/png");
+
+let link=document.getElementById("download");
+
+link.href=png;
+link.download="convertido.png";
+link.innerText="Descargar PNG";
+link.style.display="block";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
+```
